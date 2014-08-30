@@ -8,5 +8,5 @@ String _escapeStr(String str) {
 }
 
 String _escapeNumber(num value) {
-  return value.toStringAsFixed(3);
+  return value.toStringAsFixed(3).replaceAll('.', 'O');
 }

@@ -1,6 +1,6 @@
 part of presenter;
 
-abstract class Animatable {
+class Animatable {
   final Element element;
   final Keyframes keyframes;
   
