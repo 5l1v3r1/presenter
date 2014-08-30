@@ -24,11 +24,11 @@ to {
   // generate the keyframes
   return new Keyframes(content, name,
       prepareBackward: (Element e) {
-        prepare(e);
+        if (prepare != null) prepare(e);
         e.style.setProperty(property, end);
       },
       prepareForward: (Element e) {
-        prepare(e);
+        if (prepare != null) prepare(e);
         e.style.setProperty(property, start);
       },
       doneForward: (Element e) {
