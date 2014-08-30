@@ -9,8 +9,15 @@ class Animatable {
   
   Animatable(this.element, this.keyframes);
   
-  Future run(bool forward, {num duration: 0}) {
+  Future run(bool forward, {num duration: 0, num delay: 0}) {
     return _future = _future.then((_) {
+      if (delay != 0) {
+        Duration duration = new Duration(milliseconds: (delay * 1000).round());
+        return new Future.delayed(duration);
+      } else {
+        return null;
+      }
+    }).then((_) {
       keyframes.addToDOM();
       if (forward == _finished) return null;
       if (forward) keyframes.runPrepareForward(element);
