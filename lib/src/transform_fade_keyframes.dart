@@ -36,7 +36,7 @@ to {
   KeyframeSetter startSetter = (Element e) {
     e.style.opacity = '$opacityStart';
     e.style.transform = transformStart;
-    if (hideOnZero && opacityEnd.abs() < 0.001) {
+    if (hideOnZero && opacityStart.abs() < 0.001) {
       e.style.display = 'none';
     }
     if (disableEvents) e.style.pointerEvents = 'none';
