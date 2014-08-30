@@ -52,12 +52,12 @@ to {
   // generate the keyframes
   return new Keyframes(content, name,
       prepareBackward: (Element e) {
-        prepare(e);
         doneSetter(e);
+        prepare(e);
       },
       prepareForward: (Element e) {
-        prepare(e);
         startSetter(e);
+        prepare(e);
       },
       doneForward: doneSetter,
       doneBackward: startSetter);
