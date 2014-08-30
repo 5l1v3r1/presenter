@@ -22,8 +22,15 @@ to {
       _escapeStr(start) + '-' + _escapeStr(end);
   
   // generate the keyframes
-  return new Keyframes(content, name, prepareBackward: prepare,
-      prepareForward: prepare,
+  return new Keyframes(content, name,
+      prepareBackward: (Element e) {
+        prepare(e);
+        e.style.setProperty(property, end);
+      },
+      prepareForward: (Element e) {
+        prepare(e);
+        e.style.setProperty(property, start);
+      },
       doneForward: (Element e) {
         e.style.setProperty(property, end);
         if (disableEvents) e.style.pointerEvents = 'auto';

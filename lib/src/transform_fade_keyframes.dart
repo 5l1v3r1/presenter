@@ -24,6 +24,24 @@ to {
     if (hideOnZero) e.style.display = 'block';
   };
   
+  KeyframeSetter doneSetter = (Element e) {
+    e.style.transform = transformEnd;
+    e.style.opacity = '$opacityEnd';
+    if (hideOnZero && opacityEnd.abs() < 0.001) {
+      e.style.display = 'none';
+    }
+    if (disableEvents) e.style.pointerEvents = 'auto';
+  };
+  
+  KeyframeSetter startSetter = (Element e) {
+    e.style.opacity = '$opacityStart';
+    e.style.transform = transformStart;
+    if (hideOnZero && opacityEnd.abs() < 0.001) {
+      e.style.display = 'none';
+    }
+    if (disableEvents) e.style.pointerEvents = 'none';
+  };
+  
   // generate a name that is somewhat unique to this animation but will be the
   // same every time
   String name = 'presenter-keyframes-transformfade-' +
@@ -32,21 +50,15 @@ to {
       '$disableEvents';
   
   // generate the keyframes
-  return new Keyframes(content, name, prepareBackward: prepare,
-      prepareForward: prepare,
-      doneForward: (Element e) {
-        e.style.transform = transformEnd;
-        e.style.opacity = '$opacityEnd';
-        if (hideOnZero && opacityEnd.abs() < 0.001) {
-          e.style.display = 'none';
-        }
-        if (disableEvents) e.style.pointerEvents = 'auto';
-      }, doneBackward: (Element e) {
-        e.style.opacity = '$opacityStart';
-        e.style.transform = transformStart;
-        if (hideOnZero && opacityEnd.abs() < 0.001) {
-          e.style.display = 'none';
-        }
-        if (disableEvents) e.style.pointerEvents = 'none';
-      });
+  return new Keyframes(content, name,
+      prepareBackward: (Element e) {
+        prepare(e);
+        doneSetter(e);
+      },
+      prepareForward: (Element e) {
+        prepare(e);
+        startSetter(e);
+      },
+      doneForward: doneSetter,
+      doneBackward: startSetter);
 }
