@@ -23,15 +23,15 @@ class Keyframes {
   
   void runDoneForward(Element e) {
     if (doneForward == null) return;
-    prepareForward(e);
+    doneForward(e);
   }
   
   void runDoneBackward(Element e) {
     if (doneBackward == null) return;
-    prepareBackward(e);
+    doneBackward(e);
   }
   
-  String get styleId => '#presentor-animation-$name';
+  String get styleId => '#presenter-animation-$name';
   
   Keyframes(this.contents, this.name, {this.prepareForward: null,
             this.prepareBackward: null, this.doneForward: null,
