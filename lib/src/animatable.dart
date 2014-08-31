@@ -72,12 +72,14 @@ class Animatable {
       
       var listener;
       listener = (_) {
-        element.removeEventListener('animationend', listener);
+        element.removeEventListener('animationEnd', listener);
+        element.removeEventListener('webkitAnimationEnd', listener);
         if (forward) keyframes.runDoneForward(element);
         else keyframes.runDoneBackward(element);
         element.style.animation = '';
       };
-      element.addEventListener('animationend', listener);
+      element.addEventListener('animationEnd', listener);
+      element.addEventListener('webkitAnimationEnd', listener);
     });
   }
 }
