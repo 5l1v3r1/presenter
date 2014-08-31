@@ -1,5 +1,13 @@
 part of presenter;
 
+/**
+ * Generate [Keyframes] that animate a transition between two values of a CSS
+ * [property]. The initial value is [start], the final value is [end].
+ * 
+ * Pass `true` for [disableEvents] to disable user interaction on the target
+ * element before the animation has been completed. This is useful for fade-in
+ * transitions.
+ */
 Keyframes propertyKeyframes(String property, String start, String end,
                             {bool disableEvents: false}) {
   String content = """

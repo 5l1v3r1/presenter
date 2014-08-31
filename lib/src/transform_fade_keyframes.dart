@@ -1,5 +1,14 @@
 part of presenter;
 
+/**
+ * Generate [Keyframes] that animate a change in the CSS3 transformation while
+ * simultaneously changing the opacity of an element. This is useful for fancy
+ * page load animations where an element slides in and fades in. 
+ * 
+ * Pass `true` for [disableEvents] to disable user interaction on the target
+ * element before the animation has been completed. This is useful for fade-in
+ * transitions.
+ */
 Keyframes transformFadeKeyframes(String transformStart, double opacityStart,
                                  {String transformEnd: 'none',
                                   double opacityEnd: 1.0,
