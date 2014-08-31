@@ -8,6 +8,9 @@ part of presenter;
  * Pass `true` for [disableEvents] to disable user interaction on the target
  * element before the animation has been completed. This is useful for fade-in
  * transitions.
+ * 
+ * Pass `true` for [hideOnZero] if you want to set `display: none` on the
+ * affected element when its opacity reaches 0.
  */
 Keyframes transformFadeKeyframes(String transformStart, double opacityStart,
                                  {String transformEnd: 'none',

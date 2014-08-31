@@ -1,3 +1,5 @@
 name: presenter
 version: 0.0.8
-description: A pub package
+author: Alex Nichol <unixpickle@gmail.com>
+description: A simple wrapper for CSS3 animations
+homepage: https://github.com/unixpickle/presenter
