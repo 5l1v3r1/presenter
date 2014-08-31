@@ -69,11 +69,15 @@ class Animatable {
       element.style.animationDirection = forward ? 'normal' : 'reverse';
       element.style.animationFillMode = 'forwards';
       element.style.animationTimingFunction = timingFunction;
-      return Window.animationEndEvent.forElement(element).first.then((_) {
+      
+      var listener;
+      listener = (_) {
+        element.removeEventListener('onanimationend', listener);
         if (forward) keyframes.runDoneForward(element);
         else keyframes.runDoneBackward(element);
         element.style.animation = '';
-      });
+      };
+      element.addEventListener('onanimationend', listener);
     });
   }
 }
