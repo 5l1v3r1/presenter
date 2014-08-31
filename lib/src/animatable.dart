@@ -63,6 +63,22 @@ class Animatable {
         return null;
       }
       
+      Completer c = new Completer();
+      EventListener listener;
+      listener = (_) {
+        element.removeEventListener('animationend', listener, false);
+        element.removeEventListener('webkitAnimationEnd', listener, false);
+        element.removeEventListener('oanimationend', listener, false);
+        if (forward) keyframes.runDoneForward(element);
+        else keyframes.runDoneBackward(element);
+        element.style.animation = '';
+        element.offsetHeight;
+        c.complete();
+      };
+      element.addEventListener('animationend', listener, false);
+      element.addEventListener('webkitAnimationEnd', listener, false);
+      element.addEventListener('oanimationend', listener, false);
+      
       // longer lasting animations use animation keyframes
       element.style.animation = keyframes.name;
       element.style.animationDuration = '${duration}s';
@@ -70,16 +86,7 @@ class Animatable {
       element.style.animationFillMode = 'forwards';
       element.style.animationTimingFunction = timingFunction;
       
-      var listener;
-      listener = (_) {
-        element.removeEventListener('animationEnd', listener);
-        element.removeEventListener('webkitAnimationEnd', listener);
-        if (forward) keyframes.runDoneForward(element);
-        else keyframes.runDoneBackward(element);
-        element.style.animation = '';
-      };
-      element.addEventListener('animationEnd', listener);
-      element.addEventListener('webkitAnimationEnd', listener);
+      return c.future;
     });
   }
 }

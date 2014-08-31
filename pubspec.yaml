@@ -1,5 +1,5 @@
 name: presenter
-version: 0.0.11
+version: 0.0.12
 author: Alex Nichol <unixpickle@gmail.com>
 description: A simple wrapper for CSS3 animations
 homepage: https://github.com/unixpickle/presenter
